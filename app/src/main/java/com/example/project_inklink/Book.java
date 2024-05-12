@@ -8,12 +8,33 @@ public class Book {
     String desc;
     int views;
 
-    public Book(ArrayList<String> genres, String name, String desc, int views, String owner) {
+    public String getCoverUrl() {
+        return coverUrl;
+    }
+
+    public void setCoverUrl(String coverUrl) {
+        this.coverUrl = coverUrl;
+    }
+
+    String coverUrl;
+
+    public int getLikes() {
+        return likes;
+    }
+
+    public void setLikes(int likes) {
+        this.likes = likes;
+    }
+
+    int likes;
+
+    public Book(ArrayList<String> genres, String name, String desc, int views, String owner,String image) {
         this.genres = genres;
         this.name = name;
         this.desc = desc;
         this.views = views;
         this.owner = owner;
+        this.coverUrl=image;
     }
 
     String owner;

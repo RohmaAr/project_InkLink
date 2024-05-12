@@ -89,11 +89,12 @@ public class  AuthenticationActivity extends AppCompatActivity {
                                                  user= snapshotting.getValue(User.class);
                                                 if (user != null) {
                                                     // Handle the retrieved user object
+                                                    //System.out.println("key :"+ snapshotting.getKey());
                                                     System.out.println("Username: " + user.getUsername());
                                                     System.out.println("Email: " + user.getEmail());
                                                     System.out.println("Profile Picture URL: " + user.getPfpUrl());
-                                                    Intent intent = new Intent(AuthenticationActivity.this, MainActivity2.class);
-
+                                                    Intent intent = new Intent(AuthenticationActivity.this, Tabs.class);
+                                                    user.setFbKEY(snapshotting.getKey());
                                                     intent.putExtra("user",user);
                                                     startActivity(intent);
 
@@ -175,28 +176,48 @@ public class  AuthenticationActivity extends AppCompatActivity {
                     etSConfirmPassword.setError("Does not match password");
                 }
                 else {
-                     auth.createUserWithEmailAndPassword(email,pas).addOnCompleteListener(
-                             new OnCompleteListener<AuthResult>() {
-                                 @Override
-                                 public void onComplete(@NonNull Task<AuthResult> task) {
-                                     if(task.isSuccessful())
-                                     {
-                                         Toast.makeText(AuthenticationActivity.this,"Account successfully made",Toast.LENGTH_SHORT).show();
-                                         databaseReference= FirebaseDatabase.getInstance().getReference("Users");
-                                         String key=databaseReference.push().getKey();
-                                         User user=new User(null,us,email);
-                                         assert key != null;
-                                         databaseReference.child(key).setValue(user);
 
-                                         btnSLogin.performClick();
-                                     }
-                                     else{
-                                         Toast.makeText(AuthenticationActivity.this,"Couldn't create account",Toast.LENGTH_SHORT).show();
+                    DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference().child("Users");
+                    Query usernameQuery = usersRef.orderByChild("username").equalTo(us);
+                    usernameQuery.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            if (dataSnapshot.exists()) {
+                                // Username already exists
+                                etSUsername.setError("Username already exists");
+                            }else{
+                                auth.createUserWithEmailAndPassword(email,pas).addOnCompleteListener(
+                                        new OnCompleteListener<AuthResult>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                                if(task.isSuccessful())
+                                                {
+                                                    Toast.makeText(AuthenticationActivity.this,"Account successfully made",Toast.LENGTH_SHORT).show();
+                                                    databaseReference= FirebaseDatabase.getInstance().getReference("Users");
+                                                    String key=databaseReference.push().getKey();
+                                                    User user=new User(null,us,email);
+                                                    assert key != null;
+                                                    databaseReference.child(key).setValue(user);
 
-                                     }
-                                 }
-                             }
-                     );
+                                                    btnSLogin.performClick();
+                                                }
+                                                else{
+                                                    Toast.makeText(AuthenticationActivity.this,"Couldn't create account",Toast.LENGTH_SHORT).show();
+
+                                                }
+                                            }
+                                        }
+                                );
+
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                            Toast.makeText(AuthenticationActivity.this, "Database error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
                 }
             }
         });

@@ -4,7 +4,16 @@ import java.io.Serializable;
 
 public class User implements Serializable {
 
+    public String getFbKEY() {
+        return fbKEY;
+    }
+
+    public void setFbKEY(String fbKEY) {
+        this.fbKEY = fbKEY;
+    }
+
     String pfpUrl;
+    String fbKEY;
 
     public User() {
     }

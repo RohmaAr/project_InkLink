@@ -13,8 +13,11 @@ public class ImageBook extends Book{
         this.urls = urls;
     }
 
-    public ImageBook(ArrayList<String> genres, String name, String desc, int views, String owner, ArrayList<String> urls) {
-        super(genres, name, desc, views, owner);
+    public ImageBook(){
+
+    }
+    public ImageBook(ArrayList<String> genres, String name, String desc, int views, String owner, ArrayList<String> urls,String image) {
+        super(genres, name, desc, views, owner,image);
         this.urls = urls;
     }
 }
