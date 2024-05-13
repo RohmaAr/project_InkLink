@@ -17,6 +17,12 @@
         android:theme="@style/Theme.Project_InkLink"
         tools:targetApi="31">
         <activity
+            android:name=".GenreSearchActivity"
+            android:exported="false" />
+        <activity
+            android:name=".GenreSearchResult"
+            android:exported="false" />
+        <activity
             android:name=".ViewBookDetail"
             android:exported="false" />
         <activity

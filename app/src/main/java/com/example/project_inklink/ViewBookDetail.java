@@ -7,8 +7,11 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,6 +43,7 @@ public class ViewBookDetail extends AppCompatActivity {
     String username;
     Book book;
     Library library;
+    ScrollView scrollView;
     DatabaseReference reference;
     String key;
     @Override
@@ -55,6 +59,7 @@ public class ViewBookDetail extends AppCompatActivity {
         tvTitle=findViewById(R.id.toolbartitle);
         tvTitle.setVisibility(View.GONE);
         ivBack=findViewById(R.id.ivtoolbarback);
+        scrollView=findViewById(R.id.scrollGenres);
         ivBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,6 +76,22 @@ public class ViewBookDetail extends AppCompatActivity {
         username=intent.getStringExtra("username");
         book= (Book) intent.getSerializableExtra("book");
         assert book != null;
+        // Assuming scrollView is your ScrollView
+        LinearLayout genreButtonsContainer = findViewById(R.id.genreButtonsContainer);
+
+        for (String genre : book.getGenres()) {
+            Button button = new Button(this);
+            button.setLayoutParams(new ViewGroup.LayoutParams(
+                    ViewGroup.LayoutParams.WRAP_CONTENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT
+            ));
+            button.setText(genre);
+            button.setTextSize(16);
+
+            // Add the Button to the LinearLayout inside ScrollView
+            genreButtonsContainer.addView(button);
+        }
+
         tvName.setText(book.getName());
         tvDesc.setText(book.getDesc());
         if(book.getOwner()!=null)
@@ -112,7 +133,7 @@ public class ViewBookDetail extends AppCompatActivity {
                                     if (book.isPaid()) {
                                         //PAYMENT MAKINGGGGGG
                                         addToLibrary();
-                                        Toast.makeText(ViewBookDetail.this, "book is paid", Toast.LENGTH_SHORT).show();
+                                     //   Toast.makeText(ViewBookDetail.this, "book is paid", Toast.LENGTH_SHORT).show();
                                     }
                                     openOrDisplayBook();
                                        // Toast.makeText(ViewBookDetail.this, "book is not paid", Toast.LENGTH_SHORT).show()

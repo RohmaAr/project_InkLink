@@ -4,21 +4,43 @@
     android:padding="15dp"
     android:layout_height="wrap_content"
     android:orientation="horizontal">
+
     <ImageView
-        android:layout_width="100dp"
         android:id="@+id/ivItemBook"
-        android:scaleType="centerCrop"
-        android:layout_height="133dp"/>
-    <TextView
+        android:layout_width="100dp"
+        android:layout_height="133dp"
+        android:scaleType="centerCrop" />
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:text="bookname"
-        android:paddingStart="10dp"
-        android:textSize="20sp"
-        android:id="@+id/tvItemBookName"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="dec"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:text="bookname"
+            android:paddingStart="10dp"
+            android:textSize="26sp"
+            android:id="@+id/tvItemBookName"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="50dp"
+            android:id="@+id/ivPaid"
+            android:layout_marginHorizontal="20dp"
+            android:src="@drawable/ic_money"/>
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="50dp"
+                android:id="@+id/ivBookType"
+                android:layout_marginHorizontal="20dp"
+                android:src="@drawable/ic_bookcover"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
 
 </LinearLayout>

@@ -1,15 +1,146 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".SearchFrag">
     <include layout="@layout/toolbar"/>
 
 <!--    &lt;!&ndash; TODO: Update blank fragment layout &ndash;&gt;-->
-<!--    <fragment-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"/>-->
+<SearchView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginVertical="20dp"
+    android:id="@+id/searchInput"/>
 
 
-</FrameLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:id="@+id/btnsGenres"
+        android:layout_height="wrap_content">
+
+
+        <Button
+            android:id="@+id/btnThriller"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="Thriller" />
+
+        <Button
+            android:id="@+id/btnInformative"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/btnThriller"
+            android:layout_margin="8dp"
+            android:text="Informative" />
+
+        <Button
+            android:id="@+id/btnHorror"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/btnInformative"
+            android:layout_margin="8dp"
+            android:text="Horror" />
+
+        <Button
+            android:id="@+id/btnDrama"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="13dp"
+            android:layout_marginEnd="8dp"
+            android:layout_below="@id/btnFiction"
+            android:layout_toRightOf="@id/btnTechnology"
+            android:text="Drama" />
+
+        <Button
+            android:id="@+id/btnFantasy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/btnThriller"
+            android:layout_margin="8dp"
+            android:text="Fantasy" />
+
+        <Button
+            android:id="@+id/btnSciFi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/btnInformative"
+            android:layout_toRightOf="@id/btnFantasy"
+            android:layout_margin="8dp"
+            android:text="Sci-Fi" />
+
+        <Button
+            android:id="@+id/btnSuspense"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/btnHorror"
+            android:layout_toRightOf="@id/btnSciFi"
+            android:layout_margin="8dp"
+            android:text="Suspense" />
+
+        <Button
+            android:id="@+id/btnSelfHelp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/btnPhilosophy"
+            android:layout_margin="8dp"
+            android:text="SelfHelp" />
+
+        <Button
+            android:id="@+id/btnPhilosophy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/btnFantasy"
+            android:layout_margin="8dp"
+            android:text="Philosophy" />
+
+        <Button
+            android:id="@+id/btnFiction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/btnSciFi"
+            android:layout_toRightOf="@id/btnPhilosophy"
+            android:layout_margin="8dp"
+            android:text="Fiction" />
+
+        <Button
+            android:id="@+id/btnHistory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/btnSuspense"
+            android:layout_toRightOf="@id/btnFiction"
+            android:layout_margin="8dp"
+            android:text="History" />
+
+        <Button
+            android:id="@+id/btnPolitics"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/btnHistory"
+            android:layout_toRightOf="@id/btnDrama"
+            android:layout_margin="8dp"
+            android:text="Politics" />
+
+        <Button
+            android:id="@+id/btnTechnology"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/btnDrama"
+            android:layout_margin="8dp"
+            android:layout_marginTop="77dp"
+            android:layout_marginBottom="8dp"
+            android:text="Technology" />
+
+    </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:id="@+id/rvListSearch"/>
+
+</LinearLayout>
