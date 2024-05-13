@@ -55,10 +55,23 @@
             android:layout_height="wrap_content"
             android:textSize="20sp"
             android:text="My Pdf Books"/>
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvProfileMyPDFbooks"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:orientation="vertical"
+            android:layout_height="600dp">
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:id="@+id/rvProfileMyImagebooks"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvProfileMyPDFbooks"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
+        </LinearLayout>
         <Button
             android:layout_width="wrap_content"
             android:text="Add pdf Book"
@@ -71,10 +84,6 @@
             android:textSize="20sp"
             android:layout_marginVertical="20dp"
             android:text="My Image Books"/>
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/rvProfileMyImagebooks"/>
         <Button
             android:layout_width="wrap_content"
             android:text="Add Image Book"

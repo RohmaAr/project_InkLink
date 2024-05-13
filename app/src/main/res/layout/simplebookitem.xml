@@ -8,11 +8,12 @@
     <ImageView
         android:id="@+id/ivSimpleBookItem"
         android:layout_width="130dp"
+        android:scaleType="centerCrop"
         android:layout_height="160dp"
         android:layout_marginBottom="10dp" />
     <TextView
         android:layout_width="match_parent"
         android:id="@+id/tvSimpleBookItem"
-        android:layout_height="wrap_content"/>
+        android:layout_height="70dp"/>
 
 </LinearLayout>

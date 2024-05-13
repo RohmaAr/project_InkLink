@@ -1,5 +1,6 @@
 package com.example.project_inklink;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -19,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -26,6 +28,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -106,8 +109,6 @@ public class ProfileFrag extends Fragment {
         rvMyPdfbooks=view.findViewById(R.id.rvProfileMyPDFbooks);
         rvMyImageBooks=view.findViewById(R.id.rvProfileMyImagebooks);
         ivback=view.findViewById(R.id.ivtoolbarback);
-        rvMyImageBooks.setVisibility(View.VISIBLE);
-        rvMyPdfbooks.setVisibility(View.VISIBLE);
         ivback.setVisibility(View.GONE);
         tvFragName=view.findViewById(R.id.toolbartitle);
         tvFragName.setText("Profile");
@@ -126,7 +127,7 @@ public class ProfileFrag extends Fragment {
                 new FirebaseRecyclerOptions.Builder<PDFBook>()
                         .setQuery(reference.child(KEY_PARENT).orderByChild("owner").equalTo(user.getUsername()), PDFBook.class)
                         .build();
-        adapter = new PDFBookRecyclerAdapter(view.getContext(), options);
+        adapter = new PDFBookRecyclerAdapter(view.getContext(), options,user.getUsername());
         adapter.setFragment(this);
 
         etUsername.setText(user.getUsername());
@@ -139,47 +140,13 @@ public class ProfileFrag extends Fragment {
         ////FOR IMAGEBOOKS LIST
 
 
-        referenceForImage = FirebaseDatabase.getInstance().getReference().child("imagebooks");
-
-         //Build the query
-        Query query = referenceForImage.orderByChild("owner").equalTo(user.getUsername());
-
-        // Get the query string
-        String queryString = query.toString();
-
-        // Print the query string to the console
-        Log.d("Firebase Query", "Query: " + queryString);
-
-        // Now you can execute the query and handle the results
-        query.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot snapshotting : dataSnapshot.getChildren()) {
-                    ImageBook BOOK= snapshotting.getValue(ImageBook.class);
-                    if (BOOK != null) {
-                        // Handle the retrieved user object
-                        //System.out.println("key :"+ snapshotting.getKey());
-                        System.out.println("BOOK NAME: " + BOOK.getName());
-                        System.out.println("Email: " + BOOK.getOwner());
-                        System.out.println("BOOK DESC: " + BOOK.getDesc());
-
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                // Handle any errors
-            }
-        });
-
-        rvMyImageBooks.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false));
+        rvMyImageBooks.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.HORIZONTAL, false));
         rvMyImageBooks.setHasFixedSize(true);
         FirebaseRecyclerOptions<ImageBook> options2 =
                 new FirebaseRecyclerOptions.Builder<ImageBook>()
-                        .setQuery(reference.orderByChild("owner").equalTo(user.getUsername()), ImageBook.class)
+                        .setQuery(reference.child("imagebooks").orderByChild("owner").equalTo(user.getUsername()), ImageBook.class)
                         .build();
-        imageBookRecyclerAdapter = new ImageBookRecyclerAdapter( options2,view.getContext());
+        imageBookRecyclerAdapter = new ImageBookRecyclerAdapter( options2,view.getContext(),user.getUsername());
         imageBookRecyclerAdapter.setFragment(this);
 
         rvMyImageBooks.setAdapter(imageBookRecyclerAdapter);
@@ -210,4 +177,5 @@ public class ProfileFrag extends Fragment {
 
         return view;
     }
+
 }

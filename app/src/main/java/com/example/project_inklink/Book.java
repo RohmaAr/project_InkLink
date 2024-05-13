@@ -1,11 +1,23 @@
 package com.example.project_inklink;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Book {
+public class Book implements Serializable {
     ArrayList<String> genres;
     String name;
+    boolean paid;
     String desc;
+
+    public String getKEY() {
+        return KEY;
+    }
+
+    public void setKEY(String KEY) {
+        this.KEY = KEY;
+    }
+
+    String KEY;
     int views;
 
     public String getCoverUrl() {
@@ -81,5 +93,13 @@ public class Book {
 
     public void setOwner(String owner) {
         this.owner = owner;
+    }
+
+    public boolean isPaid() {
+        return paid;
+    }
+
+    public void setPaid(boolean paid) {
+        this.paid = paid;
     }
 }

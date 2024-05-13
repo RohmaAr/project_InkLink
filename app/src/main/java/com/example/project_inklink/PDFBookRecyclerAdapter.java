@@ -9,37 +9,22 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.squareup.picasso.Picasso;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-
-import java.io.IOException;
-import java.io.InputStream;
-
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
 
 public class PDFBookRecyclerAdapter extends FirebaseRecyclerAdapter<PDFBook, RecyclerView.ViewHolder> {
 
     Context context;
     Fragment fragment;
-
-    public PDFBookRecyclerAdapter(Context context, @NonNull FirebaseRecyclerOptions<PDFBook> options) {
+    String userName;
+    public PDFBookRecyclerAdapter(Context context, @NonNull FirebaseRecyclerOptions<PDFBook> options,String userName) {
         super(options);
+        this.userName=userName;
         this.context = context;
         System.out.println("CALLING CONSTRUCTOR FOR "+context.toString());
     }
@@ -56,13 +41,13 @@ public class PDFBookRecyclerAdapter extends FirebaseRecyclerAdapter<PDFBook, Rec
         if(fragment instanceof HomeFrag) {
             System.out.println("HOME FRAMENT PDFFFF");
             View v = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.book_item, parent, false);
+                    .inflate(R.layout.simplebookitem, parent, false);
             return new HomeViewHolder(v);
         }else if(fragment instanceof ProfileFrag){
             System.out.println("Profile frag");
             View v = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.simplebookitem, parent, false);
-            return new SimpleViewHolder(v);
+            return new HomeViewHolder(v);
         }
         return null;
     }
@@ -76,27 +61,32 @@ public class PDFBookRecyclerAdapter extends FirebaseRecyclerAdapter<PDFBook, Rec
             ((HomeViewHolder)viewHolder).bind(pdfBook);
         }
         else if(fragment instanceof ProfileFrag){
-            ((SimpleViewHolder)viewHolder).bind(pdfBook);
+            ((HomeViewHolder)viewHolder).bind(pdfBook);
         }
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(context, DisplayPDF.class);
-                intent.putExtra("url",pdfBook.getUrl());
-                intent.putExtra("bookname",pdfBook.getName());
+//                Intent intent=new Intent(context, DisplayPDF.class);
+//                intent.putExtra("url",pdfBook.getUrl());
+//                intent.putExtra("bookname",pdfBook.getName());
+//                context.startActivity(intent);
+
+                Intent intent=new Intent(context, ViewBookDetail.class);
+                intent.putExtra("book",pdfBook);
+                intent.putExtra("username",userName);
                 context.startActivity(intent);
             }
         });
     }
 
-    private class SimpleViewHolder extends RecyclerView.ViewHolder
+    private class WholeWidthViewHolder extends RecyclerView.ViewHolder
     {
         TextView tvItemBook;
         ImageView ivCover;
-        public SimpleViewHolder(@NonNull View itemView) {
+        public WholeWidthViewHolder(@NonNull View itemView) {
             super(itemView);
-            ivCover = itemView.findViewById(R.id.ivSimpleBookItem);
-            tvItemBook=itemView.findViewById(R.id.tvSimpleBookItem);
+            ivCover = itemView.findViewById(R.id.ivItemBook);
+            tvItemBook=itemView.findViewById(R.id.tvItemBookName);
         }
 
         public void bind(PDFBook book){
@@ -105,27 +95,12 @@ public class PDFBookRecyclerAdapter extends FirebaseRecyclerAdapter<PDFBook, Rec
             if(book.getCoverUrl()!=null) {
                 Picasso.get()
                         .load(book.getCoverUrl()) // Assuming coverUrl is the Firebase Storage URL
-                        .placeholder(R.drawable.ic_bookcover) // Placeholder image while loading
+                        .placeholder(R.drawable.ic_noimage) // Placeholder image while loading
                         .into(ivCover);
             }else
             {
-                ivCover.setImageResource(R.drawable.ic_bookcover);
+                ivCover.setImageResource(R.drawable.ic_noimage);
             }
-        }
-    }
-    private class SearchViewHolder extends RecyclerView.ViewHolder
-    {
-        TextView tvItemBook;
-        ImageView ivCover;
-        public SearchViewHolder(@NonNull View itemView) {
-            super(itemView);
-            tvItemBook = itemView.findViewById(R.id.tvItemBookName);
-            ivCover=itemView.findViewById(R.id.ivItemBook);
-        }
-
-        public void bind(PDFBook book){
-            tvItemBook.setText(book.getName());
-            System.out.println("VIEW BIND OF SEARCHVIEW");
         }
     }
     private class HomeViewHolder extends RecyclerView.ViewHolder
@@ -134,8 +109,8 @@ public class PDFBookRecyclerAdapter extends FirebaseRecyclerAdapter<PDFBook, Rec
         ImageView ivCover;
         public HomeViewHolder(@NonNull View itemView) {
             super(itemView);
-            tvItemBook = itemView.findViewById(R.id.tvItemBookName);
-            ivCover=itemView.findViewById(R.id.ivItemBook);
+            tvItemBook = itemView.findViewById(R.id.tvSimpleBookItem);
+            ivCover=itemView.findViewById(R.id.ivSimpleBookItem);
         }
         public void bind(PDFBook book){
             tvItemBook.setText(book.getName());
@@ -145,11 +120,11 @@ public class PDFBookRecyclerAdapter extends FirebaseRecyclerAdapter<PDFBook, Rec
             if(book.getCoverUrl()!=null) {
                 Picasso.get()
                         .load(book.getCoverUrl()) // Assuming coverUrl is the Firebase Storage URL
-                        .placeholder(R.drawable.ic_bookcover) // Placeholder image while loading
+                        .placeholder(R.drawable.ic_noimage) // Placeholder image while loading
                         .into(ivCover);
             }else
             {
-                ivCover.setImageResource(R.drawable.ic_bookcover);
+                ivCover.setImageResource(R.drawable.ic_noimage);
             }
         }
     }

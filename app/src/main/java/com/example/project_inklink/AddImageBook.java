@@ -22,6 +22,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import android.database.Cursor;
+import android.widget.ToggleButton;
+
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -57,6 +59,7 @@ public class AddImageBook extends AppCompatActivity {
             cbSciFi, cbSuspense, cbSelfHelp, cbPhilosophy, cbFiction, cbHistory, cbPolitics;
     EditText etBookName;
     Uri imageUri;
+    ToggleButton toggleButton;
     Button btnUpload,btnFindImages;
     ImageView ivBookCover;
     EditText etDes;
@@ -141,6 +144,7 @@ public class AddImageBook extends AppCompatActivity {
         btnUpload.setVisibility(View.GONE);
     }
     private void init(){
+        toggleButton = findViewById(R.id.btnPaid);
         btnFindImages=findViewById(R.id.btFindImages);
         etDes = findViewById(R.id.etImagesetDesc);
         etBookName = findViewById(R.id.etImageSetName);
@@ -303,6 +307,10 @@ public class AddImageBook extends AppCompatActivity {
                     coverUri=uri.toString();
                     imageBook=new ImageBook(selectedGenres,etBookName.getText().toString().trim(),etDes.getText().toString().trim(),0,user.getUsername(),pages,coverUri);
                     imageBook.setLikes(0);
+                    if(toggleButton.isChecked())
+                        imageBook.setPaid(true);
+                    else
+                        imageBook.setPaid(false);
                     String key=databaseReference.push().getKey();
                     assert key != null;
                     databaseReference.child(key).setValue(imageBook);

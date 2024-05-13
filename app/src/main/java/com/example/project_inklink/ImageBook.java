@@ -1,8 +1,9 @@
 package com.example.project_inklink;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class ImageBook extends Book{
+public class ImageBook extends Book implements Serializable {
     ArrayList<String> urls;
 
     public ArrayList<String> getUrls() {

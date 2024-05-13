@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:orientation="vertical"
-    android:layout_height="match_parent"
+   android:layout_height="match_parent"
     tools:context=".HomeFrag">
     <include layout="@layout/toolbar"/>
 
@@ -12,12 +12,14 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
+        android:layout_marginVertical="20dp"
         android:id="@+id/rvBooksHome"
         />
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginVertical="40dp"
         android:layout_weight="1"
         android:id="@+id/rvImagesHome"/>
 
-</LinearLayout>
+    </LinearLayout>

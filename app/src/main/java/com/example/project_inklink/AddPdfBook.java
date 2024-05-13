@@ -18,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -26,8 +27,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
@@ -48,6 +53,7 @@ public class AddPdfBook extends AppCompatActivity {
     ImageView ivBookCover;
     EditText etDes;
     TextView tvfindBook;
+    ToggleButton toggleButton;
    // ProgressBar progressBar;
     StorageReference storageReference;
     DatabaseReference databaseReference;
@@ -60,7 +66,7 @@ public class AddPdfBook extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addpdfbook);
-
+        toggleButton = findViewById(R.id.btnPaid);
         etDes = findViewById(R.id.etpdfsetDesc);
         etBookName = findViewById(R.id.etpdfSetName);
         btnUpload = findViewById(R.id.btnUploadBook);
@@ -131,7 +137,49 @@ public class AddPdfBook extends AppCompatActivity {
                     Toast.makeText(AddPdfBook.this, "Pick at least one genre", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                uploadPDFToFirebase(data.getData());
+                final boolean[] duplicate = new boolean[1];
+                Query pdfQuery = FirebaseDatabase.getInstance().getReference("pdfbooks")
+                        .orderByChild("name")
+                        .equalTo(name);
+
+                pdfQuery.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.exists()) {
+                            // A book with the same name already exists in pdfbooks
+                            etBookName.setError("Book with this name already exists");
+                            duplicate[0] =true;
+                        } else {
+                            // Check if a book with the same name exists in imagebooks collection
+                            Query imageQuery = FirebaseDatabase.getInstance().getReference("imagebooks")
+                                    .orderByChild("name")
+                                    .equalTo(name);
+
+                            imageQuery.addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                    if (dataSnapshot.exists()) {
+                                        // A book with the same name already exists in imagebooks
+                                        etBookName.setError("Book with this name already exists");
+                                        duplicate[0]=true;
+                                    }
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
+                                    Toast.makeText(AddPdfBook.this, "Error checking imagebooks", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        Toast.makeText(AddPdfBook.this, "Error checking pdfbooks", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                if(!duplicate[0])
+                    uploadPDFToFirebase(data.getData());
             }
         });
     }
@@ -164,9 +212,13 @@ public class AddPdfBook extends AppCompatActivity {
                                             Task<Uri> task = (Task<Uri>) taskSnapshot.getStorage().getDownloadUrl();
                                             while (!task.isComplete()) ;
                                             Uri uriImage = task.getResult();
+                                           //WRITE THIS IN OWNER SPACE YAAAAD SE user.getUsername()
+                                            pdfBook=new PDFBook(uri.toString(),selectedGenres,name,desc,0,null,uriImage.toString());
 
-                                            pdfBook=new PDFBook(uri.toString(),selectedGenres,name,desc,0,user.getUsername(),uriImage.toString());
-
+                                            if(toggleButton.isChecked())
+                                                pdfBook.setPaid(true);
+                                            else
+                                                pdfBook.setPaid(false);
                                             pdfBook.setLikes(0);
                                             String key=databaseReference.push().getKey();
                                             assert key != null;

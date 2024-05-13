@@ -51,9 +51,11 @@ public class HomeFrag extends Fragment {
     private final String IMAGES_PARENT="imagebooks";
 
     public HomeFrag() {
+
         // Required empty public constructor
     }
     private Bundle bundle;
+    User user;
 
     public void setBundle(Bundle bundle) {
         this.bundle = bundle;
@@ -86,25 +88,32 @@ public class HomeFrag extends Fragment {
         tvFragName=view.findViewById(R.id.toolbartitle);
         rvImageBooks=view.findViewById(R.id.rvImagesHome);
         tvFragName.setText("Home");
-        rvBooks.setLayoutManager(new LinearLayoutManager(view.getContext()));
+        rvBooks.setLayoutManager(new LinearLayoutManager(view.getContext(),LinearLayoutManager.HORIZONTAL,false));
         rvBooks.setHasFixedSize(true);
 
-
+        if (bundle != null) {
+            user= (User) bundle.getSerializable("user");
+            // Now you can use the receivedData in your fragment
+        }
+        else {
+            System.out.println("BUNDLE EMPTY IN PROFILE FRAG");
+        }
+        assert user != null;
         FirebaseRecyclerOptions<PDFBook> options =
                 new FirebaseRecyclerOptions.Builder<PDFBook>()
                         .setQuery(reference.child(KEY_PARENT), PDFBook.class)
                         .build();
-        adapter = new PDFBookRecyclerAdapter(view.getContext(), options);
+        adapter = new PDFBookRecyclerAdapter(view.getContext(), options,user.getUsername());
         adapter.setFragment(this);
         rvBooks.setAdapter(adapter);
 
-        rvImageBooks.setLayoutManager(new LinearLayoutManager(view.getContext()));
+        rvImageBooks.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.HORIZONTAL, false));
         rvImageBooks.setHasFixedSize(true);
         FirebaseRecyclerOptions<ImageBook> options2 =
                 new FirebaseRecyclerOptions.Builder<ImageBook>()
                         .setQuery(reference.child(IMAGES_PARENT), ImageBook.class)
                         .build();
-        imageBookRecyclerAdapter = new ImageBookRecyclerAdapter(options2,view.getContext());
+        imageBookRecyclerAdapter = new ImageBookRecyclerAdapter(options2,view.getContext(),user.getUsername());
         imageBookRecyclerAdapter.setFragment(this);
         rvImageBooks.setAdapter(imageBookRecyclerAdapter);
 

@@ -1,8 +1,9 @@
 package com.example.project_inklink;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class PDFBook extends Book {
+public class PDFBook extends Book implements Serializable {
     String url;
 
     public PDFBook(String url, ArrayList<String> genres, String name, String desc, int views, String owner,String cover) {

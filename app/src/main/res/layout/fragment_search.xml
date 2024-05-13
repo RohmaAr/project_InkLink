@@ -6,7 +6,10 @@
     tools:context=".SearchFrag">
     <include layout="@layout/toolbar"/>
 
-    <!-- TODO: Update blank fragment layout -->
+<!--    &lt;!&ndash; TODO: Update blank fragment layout &ndash;&gt;-->
+<!--    <fragment-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"/>-->
 
 
 </FrameLayout>

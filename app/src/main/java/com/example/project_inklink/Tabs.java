@@ -18,6 +18,7 @@ public class Tabs extends AppCompatActivity {
 
     TabLayout tabLayout;
     ViewPager2 viewPager;
+    User user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,7 +30,7 @@ public class Tabs extends AppCompatActivity {
             return insets;
         });
         Intent intent=getIntent();
-        User user= (User) intent.getSerializableExtra("user");
+        user= (User) intent.getSerializableExtra("user");
         Bundle bundle = new Bundle();
         bundle.putSerializable("user", user);
         tabLayout=findViewById(R.id.tabLayoutHome);

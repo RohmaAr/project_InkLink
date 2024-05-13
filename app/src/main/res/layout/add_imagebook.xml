@@ -155,7 +155,21 @@
                 android:id="@+id/cbTechnology"
                 android:text="Technology"
                 />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:text="Paid Book"
+                android:id="@+id/tvPaid"
+                android:layout_below="@id/cbTechnology"
+                android:layout_marginVertical="10dp"/>
 
+            <ToggleButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/tvPaid"
+                android:layout_below="@id/cbTechnology"
+                android:id="@+id/btnPaid" />
         </RelativeLayout>
 
        <androidx.recyclerview.widget.RecyclerView

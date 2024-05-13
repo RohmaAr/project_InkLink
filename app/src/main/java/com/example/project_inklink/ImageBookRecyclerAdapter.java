@@ -22,8 +22,10 @@ public class ImageBookRecyclerAdapter extends FirebaseRecyclerAdapter<ImageBook,
     Context context;
 
     Fragment fragment;
-    public ImageBookRecyclerAdapter(@NonNull FirebaseRecyclerOptions<ImageBook> options, Context context) {
+    String userName;
+    public ImageBookRecyclerAdapter(@NonNull FirebaseRecyclerOptions<ImageBook> options, Context context,String userName) {
         super(options);
+        this.userName=userName;
         this.context = context;
         System.out.println("CALLING IMAGERECYCLE CONSTRUCTOR FOR "+context.toString());
     }
@@ -45,9 +47,13 @@ public class ImageBookRecyclerAdapter extends FirebaseRecyclerAdapter<ImageBook,
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(context, DisplayImageBook.class);
-                intent.putExtra("Uris",imageBook.getUrls());
-                intent.putExtra("bookname",imageBook.getName());
+//                Intent intent=new Intent(context, DisplayImageBook.class);
+//                intent.putExtra("Uris",imageBook.getUrls());
+//                intent.putExtra("bookname",imageBook.getName());
+//                context.startActivity(intent);
+                Intent intent=new Intent(context, ViewBookDetail.class);
+                intent.putExtra("book",imageBook);
+                intent.putExtra("username",userName);
                 context.startActivity(intent);
             }
         });
@@ -60,7 +66,7 @@ public class ImageBookRecyclerAdapter extends FirebaseRecyclerAdapter<ImageBook,
         if(fragment instanceof HomeFrag) {
             System.out.println("IMAGE HOME FRAMENT");
             View v = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.book_item, parent, false);
+                    .inflate(R.layout.simplebookitem, parent, false);
             return new ImageBookRecyclerAdapter.HomeViewHolder(v);
         }else if(fragment instanceof ProfileFrag){
             System.out.println("IMAGEEEE Profile frag");
@@ -83,55 +89,32 @@ public class ImageBookRecyclerAdapter extends FirebaseRecyclerAdapter<ImageBook,
         public void bind(ImageBook book){
             tvItemBook.setText(book.getName());
             System.out.println("IMAGEEEE VIEW BIND OF SIMPLEVIEW");
-            if(book.getCoverUrl()!=null) {
                 Picasso.get()
                         .load(book.getCoverUrl()) // Assuming coverUrl is the Firebase Storage URL
                         .placeholder(R.drawable.ic_bookcover) // Placeholder image while loading
                         .into(ivCover);
-            }else
-            {
-                ivCover.setImageResource(R.drawable.ic_bookcover);
-            }
-        }
-    }
-    private class SearchViewHolder extends RecyclerView.ViewHolder
-    {
-        TextView tvItemBook;
-        ImageView ivCover;
-        public SearchViewHolder(@NonNull View itemView) {
-            super(itemView);
-            tvItemBook = itemView.findViewById(R.id.tvItemBookName);
-            ivCover=itemView.findViewById(R.id.ivItemBook);
-        }
 
-        public void bind(ImageBook book){
-            tvItemBook.setText(book.getName());
-            System.out.println("IMAGEEEE VIEW BIND OF SEARCHVIEW");
         }
     }
+
     private class HomeViewHolder extends RecyclerView.ViewHolder
     {
         TextView tvItemBook;
         ImageView ivCover;
         public HomeViewHolder(@NonNull View itemView) {
             super(itemView);
-            tvItemBook = itemView.findViewById(R.id.tvItemBookName);
-            ivCover=itemView.findViewById(R.id.ivItemBook);
+            tvItemBook = itemView.findViewById(R.id.tvSimpleBookItem);
+            ivCover=itemView.findViewById(R.id.ivSimpleBookItem);
         }
         public void bind(ImageBook book){
             tvItemBook.setText(book.getName());
             System.out.println("IMAGEEEE VIEW BIND OF HOMEVIEW");
 
             // Load the image into the ImageView using Glide
-            if(book.getCoverUrl()!=null) {
-                Picasso.get()
-                        .load(book.getCoverUrl()) // Assuming coverUrl is the Firebase Storage URL
-                        .placeholder(R.drawable.ic_bookcover) // Placeholder image while loading
-                        .into(ivCover);
-            }else
-            {
-                ivCover.setImageResource(R.drawable.ic_bookcover);
-            }
+            Picasso.get()
+                    .load(book.getCoverUrl()) // Assuming coverUrl is the Firebase Storage URL
+                    .placeholder(R.drawable.ic_bookcover) // Placeholder image while loading
+                    .into(ivCover);
         }
     }
 }
