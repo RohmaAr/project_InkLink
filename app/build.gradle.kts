@@ -49,6 +49,7 @@ dependencies {
     implementation(libs.barteksc)
     implementation (libs.glide)
     implementation (libs.picasso)
+    implementation (libs.stripe.android)
 
 
 }

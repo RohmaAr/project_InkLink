@@ -80,7 +80,6 @@ public class  AuthenticationActivity extends AppCompatActivity {
                                 DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference().child("Users");
 
                                 Query query = usersRef.orderByChild("email").equalTo(us);
-
                                 query.addListenerForSingleValueEvent(new ValueEventListener() {
                                     @Override
                                     public void onDataChange(@NonNull DataSnapshot snapshot) {

@@ -16,6 +16,8 @@ firebaseUiDatabase = "8.0.2"
 okhttp = "5.0.0-alpha.14"
 barteksc = "2.8.2"
 picasso = "2.71828"
+stripeAndroid = "20.5.0"
+
 
 
 [libraries]
@@ -35,6 +37,7 @@ firebase-storage = { group = "com.google.firebase", name = "firebase-storage", v
 okhttp = { module = "com.squareup.okhttp3:okhttp", version.ref = "okhttp" }
 barteksc = {  group = "com.github.barteksc", name = "android-pdf-viewer", version.ref = "barteksc"}
 picasso = { module = "com.squareup.picasso:picasso", version.ref = "picasso" }
+stripe-android = { module = "com.stripe:stripe-android", version.ref = "stripeAndroid" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

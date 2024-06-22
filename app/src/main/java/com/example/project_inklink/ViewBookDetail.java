@@ -132,10 +132,15 @@ public class ViewBookDetail extends AppCompatActivity {
                                     // Proceed with your logic for checking if the book is paid
                                     if (book.isPaid()) {
                                         //PAYMENT MAKINGGGGGG
-                                        addToLibrary();
+
+                                        Intent intent1=new Intent(ViewBookDetail.this,Payment.class);
+                                        startActivity(intent1);
+                                        //addToLibrary();
                                      //   Toast.makeText(ViewBookDetail.this, "book is paid", Toast.LENGTH_SHORT).show();
                                     }
-                                    openOrDisplayBook();
+                                    else {
+                                        openOrDisplayBook();
+                                    }
                                        // Toast.makeText(ViewBookDetail.this, "book is not paid", Toast.LENGTH_SHORT).show()
                                 }
                             }
@@ -143,10 +148,12 @@ public class ViewBookDetail extends AppCompatActivity {
                             // The reads node for the user doesn't exist
                             // Proceed with your logic for checking if the book is paid
                             if (book.isPaid()) {
+                                Intent intent1=new Intent(ViewBookDetail.this,Payment.class);
+                                startActivity(intent1);
                                 Toast.makeText(ViewBookDetail.this, "book is paid", Toast.LENGTH_SHORT).show();
-                            }
+                            }else {
                                 openOrDisplayBook();
-
+                            }
 //                                Toast.makeText(ViewBookDetail.this, "book is not paid", Toast.LENGTH_SHORT).show()
                         }
                     }
@@ -165,8 +172,12 @@ public class ViewBookDetail extends AppCompatActivity {
                 if(book.isPaid())
                 {
                     //PAYMENT MODULE AND THEN ADD TO LIBRARY
+                    Intent intent1=new Intent(ViewBookDetail.this,Payment.class);
+                    startActivity(intent1);
                 }
-                addToLibrary();
+                else {
+                    addToLibrary();
+                }
             }
         });
 

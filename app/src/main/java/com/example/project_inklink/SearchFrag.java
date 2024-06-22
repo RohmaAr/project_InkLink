@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
@@ -70,6 +71,8 @@ public class SearchFrag extends Fragment {
         tvFragName.setText("Search");
         btnThriller = view.findViewById(R.id.btnThriller);
         recyclerView=view.findViewById(R.id.rvListSearch);
+        recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
+        recyclerView.setHasFixedSize(true);
         btnInformative = view.findViewById(R.id.btnInformative);
         btnHorror = view.findViewById(R.id.btnHorror);
         btnDrama = view.findViewById(R.id.btnDrama);
@@ -101,7 +104,6 @@ public class SearchFrag extends Fragment {
             @Override
             public void onClick(View v) {
                 layout.setVisibility(View.GONE);
-                recyclerView.setVisibility(View.VISIBLE);
 
             }
         });
@@ -164,14 +166,19 @@ public class SearchFrag extends Fragment {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                books.clear();
                 reference.child("pdfbooks").addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                             PDFBook pdfBook = snapshot.getValue(PDFBook.class);
-                            if(pdfBook != null && pdfBook.getName().contains(query))
+                            if(pdfBook != null && pdfBook.getName().contains(newText))
                             {
-                                System.out.println(" "+pdfBook.getName());
                                 books.add(pdfBook);
                             }
                         }
@@ -181,14 +188,19 @@ public class SearchFrag extends Fragment {
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                                     ImageBook imageBook = snapshot.getValue(ImageBook.class);
-                                    if (imageBook != null && imageBook.getName().contains(query)) {
+                                    if (imageBook != null && imageBook.getName().contains(newText)) {
                                         books.add(imageBook);
                                     }
                                 }
                                 // Initialize and set the adapter with the populated books ArrayList
-                                adapter = new AllAdapter(books, getContext(),user.getUsername());
+                                adapter = new AllAdapter(books, getContext(), user.getUsername());
                                 recyclerView.setAdapter(adapter);
                                 adapter.notifyDataSetChanged();
+                                recyclerView.setVisibility(View.VISIBLE); for(Book book : books)
+                                {
+                                    System.out.println(book.getName()+" "+book.getOwner());
+                                }
+
                             }
 
                             @Override
@@ -204,11 +216,6 @@ public class SearchFrag extends Fragment {
                     }
                 });
                 return true;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                return false;
             }
         });
 

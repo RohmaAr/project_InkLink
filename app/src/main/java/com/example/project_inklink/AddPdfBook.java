@@ -213,7 +213,7 @@ public class AddPdfBook extends AppCompatActivity {
                                             while (!task.isComplete()) ;
                                             Uri uriImage = task.getResult();
                                            //WRITE THIS IN OWNER SPACE YAAAAD SE user.getUsername()
-                                            pdfBook=new PDFBook(uri.toString(),selectedGenres,name,desc,0,null,uriImage.toString());
+                                            pdfBook=new PDFBook(uri.toString(),selectedGenres,name,desc,0, user.getUsername(), uriImage.toString());
 
                                             if(toggleButton.isChecked())
                                                 pdfBook.setPaid(true);
@@ -258,6 +258,7 @@ public class AddPdfBook extends AppCompatActivity {
                 progressDialog.setMessage("File uploaded "+(int)progress+"%");
             }
         });
+
 
     }
     private String getFileName(Uri uri) {

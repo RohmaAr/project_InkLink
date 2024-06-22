@@ -14,8 +14,11 @@
         android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Project_InkLink"
+        android:theme="@style/AppTheme"
         tools:targetApi="31">
+        <activity
+            android:name=".Payment"
+            android:exported="false" />
         <activity
             android:name=".GenreSearchActivity"
             android:exported="false" />

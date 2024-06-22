@@ -5,12 +5,15 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -28,9 +31,12 @@ public class LibraryFrag extends Fragment {
     private String mParam1;
     private String mParam2;
     private Bundle bundle;
+    User user;
     private TextView tvFragName;
     private ImageView ivback;
-
+    RecyclerView recyclerView;
+    AllAdapter adapter;
+    ArrayList<Book> books;
     public void setBundle(Bundle bundle) {
         this.bundle = bundle;
     }
@@ -72,7 +78,14 @@ public class LibraryFrag extends Fragment {
         ivback.setVisibility(View.GONE);
         tvFragName=view.findViewById(R.id.toolbartitle);
         tvFragName.setText("Library");
-
+        recyclerView=view.findViewById(R.id.rvlib);
+        if (bundle != null) {
+            user= (User) bundle.getSerializable("user");
+            // Now you can use the receivedData in your fragment
+        }
+        else {
+            System.out.println("BUNDLE EMPTY IN PROFILE FRAG");
+        }
     }
 
     @Override
