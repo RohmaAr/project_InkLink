@@ -11,5 +11,7 @@
         <item name="android:windowBackground">@color/customBackgroundColor</item>
         <item name="android:textColor">@color/customTextColor</item>
     </style>
-
+    <style name="splashScreen" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:background">@color/olivegreen</item>
+    </style>
 </resources>

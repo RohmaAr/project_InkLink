@@ -2,4 +2,8 @@
     <string name="app_name">project_InkLink</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="pdf_books">Pdf books</string>
+    <string name="image_books">Image books</string>
+    <string name="no_books_in_library_yet">No books in library yet</string>
+    <string name="re_enter_password">Re enter password</string>
 </resources>

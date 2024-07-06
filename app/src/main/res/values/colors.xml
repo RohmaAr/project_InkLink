@@ -4,5 +4,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="customBackgroundColor">#F0F0F0</color>
     <color name="customTextColor">#000000</color>
-
+    <color name="olivegreen">#ccd5ae</color>
+    <color name="darkergreen">#666A57</color>
 </resources>

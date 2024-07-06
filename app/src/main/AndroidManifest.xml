@@ -17,13 +17,20 @@
         android:theme="@style/AppTheme"
         tools:targetApi="31">
         <activity
+            android:name=".Splashscreen"
+            android:theme="@style/splashScreen"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".Payment"
             android:exported="false" />
         <activity
             android:name=".GenreSearchActivity"
-            android:exported="false" />
-        <activity
-            android:name=".GenreSearchResult"
             android:exported="false" />
         <activity
             android:name=".ViewBookDetail"
@@ -45,13 +52,8 @@
             android:exported="false" />
         <activity
             android:name=".AuthenticationActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:exported="false"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
     </application>
 
 </manifest>

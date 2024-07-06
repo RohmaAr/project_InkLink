@@ -101,7 +101,7 @@ public class HomeFrag extends Fragment {
         assert user != null;
         FirebaseRecyclerOptions<PDFBook> options =
                 new FirebaseRecyclerOptions.Builder<PDFBook>()
-                        .setQuery(reference.child(KEY_PARENT), PDFBook.class)
+                        .setQuery(reference.child(KEY_PARENT).limitToFirst(5), PDFBook.class)
                         .build();
         adapter = new PDFBookRecyclerAdapter(view.getContext(), options,user.getUsername());
         adapter.setFragment(this);
@@ -111,7 +111,7 @@ public class HomeFrag extends Fragment {
         rvImageBooks.setHasFixedSize(true);
         FirebaseRecyclerOptions<ImageBook> options2 =
                 new FirebaseRecyclerOptions.Builder<ImageBook>()
-                        .setQuery(reference.child(IMAGES_PARENT), ImageBook.class)
+                        .setQuery(reference.child(IMAGES_PARENT).limitToFirst(5), ImageBook.class)
                         .build();
         imageBookRecyclerAdapter = new ImageBookRecyclerAdapter(options2,view.getContext(),user.getUsername());
         imageBookRecyclerAdapter.setFragment(this);
