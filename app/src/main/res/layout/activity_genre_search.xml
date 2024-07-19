@@ -6,6 +6,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/darkergreen"
     tools:context=".GenreSearchActivity">
     <include layout="@layout/toolbar"/>
     <androidx.recyclerview.widget.RecyclerView
@@ -17,6 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:visibility="gone"
+        android:textColor="@color/white"
         android:id="@+id/tvNoResults"
         android:text="No search results found"/>
 </LinearLayout>

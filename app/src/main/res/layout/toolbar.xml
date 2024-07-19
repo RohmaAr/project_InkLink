@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:padding="17dp"
+    android:background="@color/darkergreen"
     android:layout_height="wrap_content">
     <ImageView
         android:layout_width="wrap_content"
@@ -12,6 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="FRAGNAME"
+        android:textColor="@color/white"
         android:textSize="20sp"
         android:id="@+id/toolbartitle"
         android:layout_marginHorizontal="20dp"

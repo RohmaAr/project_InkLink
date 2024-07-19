@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/darkergreen"
     tools:context=".SearchFrag">
     <include layout="@layout/toolbar"/>
 
@@ -26,10 +27,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textAllCaps="true"
+            android:backgroundTint="@color/olivegreen"
             android:text="Thriller" />
 
         <Button
             android:id="@+id/btnInformative"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textAllCaps="true"
+            android:backgroundTint="@color/olivegreen"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/btnThriller"
@@ -39,6 +48,10 @@
         <Button
             android:id="@+id/btnHorror"
             android:layout_width="wrap_content"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textAllCaps="true"
+            android:backgroundTint="@color/olivegreen"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/btnInformative"
             android:layout_margin="8dp"
@@ -46,6 +59,10 @@
 
         <Button
             android:id="@+id/btnDrama"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textAllCaps="true"
+            android:backgroundTint="@color/olivegreen"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
@@ -58,6 +75,10 @@
 
         <Button
             android:id="@+id/btnFantasy"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textAllCaps="true"
+            android:backgroundTint="@color/olivegreen"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/btnThriller"
@@ -67,6 +88,10 @@
         <Button
             android:id="@+id/btnSciFi"
             android:layout_width="wrap_content"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textAllCaps="true"
+            android:backgroundTint="@color/olivegreen"
             android:layout_height="wrap_content"
             android:layout_below="@id/btnInformative"
             android:layout_toRightOf="@id/btnFantasy"
@@ -78,8 +103,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/btnHorror"
-            android:layout_toRightOf="@id/btnSciFi"
             android:layout_margin="8dp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textAllCaps="true"
+            android:backgroundTint="@color/olivegreen"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="14dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_toRightOf="@id/btnSciFi"
             android:text="Suspense" />
 
         <Button
@@ -87,6 +121,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/btnPhilosophy"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textAllCaps="true"
+            android:backgroundTint="@color/olivegreen"
             android:layout_margin="8dp"
             android:text="SelfHelp" />
 
@@ -94,6 +132,10 @@
             android:id="@+id/btnPhilosophy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textAllCaps="true"
+            android:backgroundTint="@color/olivegreen"
             android:layout_below="@id/btnFantasy"
             android:layout_margin="8dp"
             android:text="Philosophy" />
@@ -103,8 +145,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/btnSciFi"
-            android:layout_toRightOf="@id/btnPhilosophy"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textAllCaps="true"
+            android:backgroundTint="@color/olivegreen"
             android:layout_margin="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="13dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_toRightOf="@id/btnPhilosophy"
             android:text="Fiction" />
 
         <Button
@@ -112,6 +163,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/btnSuspense"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textAllCaps="true"
+            android:backgroundTint="@color/olivegreen"
             android:layout_toRightOf="@id/btnFiction"
             android:layout_margin="8dp"
             android:text="History" />
@@ -122,6 +177,10 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/btnHistory"
             android:layout_toRightOf="@id/btnDrama"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textAllCaps="true"
+            android:backgroundTint="@color/olivegreen"
             android:layout_margin="8dp"
             android:text="Politics" />
 
@@ -131,6 +190,10 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/btnDrama"
             android:layout_margin="8dp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textAllCaps="true"
+            android:backgroundTint="@color/olivegreen"
             android:layout_marginTop="77dp"
             android:layout_marginBottom="8dp"
             android:text="Technology" />

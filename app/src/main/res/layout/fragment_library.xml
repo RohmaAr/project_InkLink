@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".LibraryFrag"
+    android:background="@color/darkergreen"
     android:orientation="vertical">
 
     <LinearLayout
@@ -13,6 +14,7 @@
         <include layout="@layout/toolbar"/>
     <TextView
         android:layout_marginVertical="40dp"
+        android:textColor="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -31,6 +33,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:textSize="20sp"
+        android:textColor="@color/white"
         android:gravity="center"
         android:text="@string/image_books"/>
 
@@ -45,6 +48,7 @@
         android:text="@string/no_books_in_library_yet"
         android:layout_gravity="center"
         android:textSize="20sp"
+        android:textColor="@color/white"
         android:gravity="center"
         android:visibility="gone"
         android:id="@+id/tvEmptyLibrary"/>

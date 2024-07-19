@@ -7,6 +7,7 @@
     android:gravity="center"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/darkergreen"
     tools:context=".ViewBookDetail">
     <include layout="@layout/toolbar"/>
     <ImageView
@@ -20,6 +21,7 @@
         android:textSize="30sp"
         android:layout_marginVertical="10dp"
         android:layout_width="wrap_content"
+        android:textColor="@color/white"
         android:layout_height="0dp"
         android:id="@+id/tvbookdetailname"
         android:layout_weight="1"/>
@@ -27,6 +29,7 @@
         android:textSize="20sp"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:textColor="@color/white"
         android:id="@+id/tvbookdetailowner"
         android:layout_weight="1"/>
     <ScrollView
@@ -48,6 +51,8 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1.5"
+
+        android:textColor="@color/white"
         android:id="@+id/tvBookdetailDesc"/>
     <LinearLayout
         android:layout_width="match_parent"
@@ -60,11 +65,19 @@
             android:layout_height="wrap_content"
             android:id="@+id/btnBookdetailAddtolib"
             android:text="Add To Library"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textAllCaps="true"
+            android:backgroundTint="@color/olivegreen"
             />
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/btnread"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textAllCaps="true"
+            android:backgroundTint="@color/olivegreen"
             android:layout_marginHorizontal="20dp"
             android:text="Read"/>
     </LinearLayout>

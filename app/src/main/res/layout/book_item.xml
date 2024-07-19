@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:padding="15dp"
+    android:background="@color/darkergreen"
     android:layout_height="wrap_content"
     android:orientation="horizontal">
 
@@ -21,6 +22,7 @@
             android:text="bookname"
             android:paddingStart="10dp"
             android:textSize="26sp"
+            android:textColor="@color/white"
             android:id="@+id/tvItemBookName"/>
         <LinearLayout
             android:layout_width="match_parent"

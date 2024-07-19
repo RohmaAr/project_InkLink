@@ -85,8 +85,10 @@ public class ViewBookDetail extends AppCompatActivity {
                     ViewGroup.LayoutParams.WRAP_CONTENT,
                     ViewGroup.LayoutParams.WRAP_CONTENT
             ));
-            button.setText(genre);
+            button.setText(genre.toUpperCase());
             button.setTextSize(16);
+            button.setTextColor(getResources().getColor(R.color.black));
+            button.setBackgroundColor(getResources().getColor(R.color.olivegreen));
 
             // Add the Button to the LinearLayout inside ScrollView
             genreButtonsContainer.addView(button);

@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
+    android:background="@color/darkergreen"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
  tools:context=".AddPdfBook">
@@ -25,6 +26,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Enter a name for the book"
+        android:textColor="@color/white"
         android:layout_marginVertical="10dp"
         android:textSize="20sp"/>
     <EditText
@@ -38,6 +40,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Write some description: "
+        android:textColor="@color/white"
+
         android:layout_marginVertical="10dp"
         android:textSize="20sp"/>
     <EditText
@@ -46,6 +50,7 @@
         android:id="@+id/etpdfsetDesc"
         android:inputType="textMultiLine"
         android:maxLength="200"
+        android:textColor="@color/white"
         android:maxLines="5"
         />
     <TextView
@@ -53,6 +58,8 @@
         android:layout_height="wrap_content"
         android:text="Pick relevant genres:"
         android:layout_marginVertical="10dp"
+        android:textColor="@color/white"
+
         android:textSize="20sp"/>
 
         <RelativeLayout
@@ -62,6 +69,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/cbThriller"
+                android:textColor="@color/white"
+
                 android:layout_alignParentStart="true"
                 android:text="Thriller"/>
             <CheckBox
@@ -69,11 +78,15 @@
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@id/cbThriller"
                 android:id="@+id/cbInformative"
+                android:textColor="@color/white"
+
                 android:text="Informative"
                 />
             <CheckBox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
+
                 android:layout_toRightOf="@id/cbInformative"
                 android:id="@+id/cbHorror"
                 android:text="Horror"
@@ -83,18 +96,22 @@
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@id/cbHorror"
                 android:id="@+id/cbDrama"
+                android:textColor="@color/white"
+
                 android:text="Drama"
                 />
             <CheckBox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/cbThriller"
+                android:textColor="@color/white"
                 android:id="@+id/cbFantasy"
                 android:text="Fantasy"
                 />
             <CheckBox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
                 android:layout_below="@id/cbInformative"
                 android:layout_toRightOf="@id/cbFantasy"
                 android:id="@+id/cbSciFi"
@@ -104,6 +121,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/cbHorror"
+                android:textColor="@color/white"
                 android:layout_toRightOf="@id/cbSciFi"
                 android:id="@+id/cbSuspense"
                 android:text="Suspense"
@@ -111,6 +129,7 @@
             <CheckBox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
                 android:layout_below="@id/cbDrama"
                 android:layout_toRightOf="@id/cbSuspense"
                 android:id="@+id/cbSelfHelp"
@@ -120,12 +139,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/cbFantasy"
+                android:textColor="@color/white"
                 android:id="@+id/cbPhilosophy"
                 android:text="Philosophy"
                 />
             <CheckBox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
                 android:layout_below="@id/cbSciFi"
                 android:layout_toRightOf="@id/cbPhilosophy"
                 android:id="@+id/cbFiction"
@@ -134,6 +155,7 @@
             <CheckBox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
                 android:layout_below="@id/cbSuspense"
                 android:layout_toRightOf="@id/cbFiction"
                 android:id="@+id/cbHistory"
@@ -143,6 +165,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/cbSelfHelp"
+                android:textColor="@color/white"
                 android:layout_toRightOf="@id/cbHistory"
                 android:id="@+id/cbPolitics"
                 android:text="Politics"
@@ -151,6 +174,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/cbPhilosophy"
+                android:textColor="@color/white"
                 android:id="@+id/cbTechnology"
                 android:text="Technology"
                 />
@@ -159,6 +183,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
                 android:text="Paid Book"
+                android:textColor="@color/white"
                 android:id="@+id/tvPaid"
                 android:layout_below="@id/cbTechnology"
                 android:layout_marginVertical="10dp"/>
@@ -168,6 +193,10 @@
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@id/tvPaid"
                android:layout_below="@id/cbTechnology"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textAllCaps="true"
+                android:backgroundTint="@color/olivegreen"
                 android:id="@+id/btnPaid" />
         </RelativeLayout>
 
@@ -178,7 +207,8 @@
         android:layout_height="wrap_content"
         android:text="No book attached"
              android:textSize="20sp"
-        android:layout_marginVertical="20dp"
+             android:textColor="@color/white"
+             android:layout_marginVertical="20dp"
         android:drawableRight="@drawable/ic_browse"
         android:id="@+id/tvBookFound"/>
 <!--    <ProgressBar-->
